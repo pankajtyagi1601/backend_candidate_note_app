@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import candidateRoutes from "../routes/candidateRoutes.js";
+import noteRoutes from "../routes/noteRoutes.js";
 import { connectDB } from "../config/db.js";
 
 const PORT = process.env.PORT || 3000;
@@ -38,6 +40,11 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.send("Backend API is running");
 });
+
+// Routes
+app.use("/api/candidates", candidateRoutes);
+
+app.use("/api/notes", noteRoutes);
 
 // Health route
 app.get("/api/health", (req, res) => {
